@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Spring Boot + JPA + Datatables</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="/js/datatable.js"></script>
+</head>
+
+
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/layout/base">
+
+<div layout:fragment="content">
+    <div class="" employee="main">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form name="employee" class="form-horizontal form-label-left" id="employee"
+                              action="/hrm_admin/employee" method='POST' modelAttribute="employee">
+                            <span class="section"> Employee </span>
+
+                        </form>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="" id="tableOffice">
+                                    <table id="employeesTable" class="display">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                        </thead>
+                                        <!-- Footer Table -->
+                                        <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div layout:fragment="script">
+    <script src="/js/TestJs.js"></script>
+</div>
+<div layout:fragment="css">
+    <!--<link href="../css/Security/employee.css" rel="stylesheet">-->
+</div>

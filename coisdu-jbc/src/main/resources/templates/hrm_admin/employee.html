@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/layout/base">
+
+<div layout:fragment="content">
+    <div class="" employee="main">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form name="employee" class="form-horizontal form-label-left" id="employee"
+                              action="/hrm_admin/employee" method='POST' modelAttribute="employee">
+                            <span class="section"> Employee </span>
+
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+
+                                <!--  Name -->
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="employee-name">
+                                        Employee Name
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="employee-name" class="form-control col-md-7 col-xs-12"
+                                               name="employeeName"
+                                               placeholder="   " type="text"/>
+                                        <!--<input type="hidden" id="id" value="-1" name="name"  />-->
+                                    </div>
+                                </div>
+
+                                <!-- GID -->
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="employee-gid">
+                                        Employee ID
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="employee-gid" class="form-control col-md-7 col-xs-12" name="employeeGID"
+                                               placeholder="   " type="text"/>
+                                        <!--<input type="hidden" id="id" value="-1" name="name"  />-->
+                                    </div>
+                                </div>
+
+                                <!--EMPLOYEE TYPE-->
+                                <div class="item form-group" id="employee-type-select-id">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "employee-type-dropdown">Employee Type
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select  class="form-control"  id= "employee-type-dropdown" name="selectedEmployeeType">
+                                            <option th:value="-1">Select Employee Type</option>
+                                            <option th:each = "empTyp : ${employeeTypeList}" th:value="${empTyp.lookupId}" th:text="${empTyp.name}"></option>
+                                        </select>
+                                        <span class="divisionError"></span>
+                                    </div>
+                                </div>
+
+                                <!--EMPLOYMENT TYPE-->
+                                <div class="item form-group" id="employement-type-select-id">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "employee-type-dropdown">Employement Type
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select  class="form-control"  id= "employement-type-dropdown" name="selectedEmployementType">
+                                            <option th:value="-1">Select Employement Type</option>
+                                            <option th:each = "emplmntTyp : ${employmentTypeList}" th:value="${emplmntTyp.lookupId}" th:text="${emplmntTyp.name}"></option>
+                                        </select>
+                                        <span class="divisionError"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+
+                                <!--OFFICE-->
+                                <div class="item form-group" id="office-select-id">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "office-dropdown">Office
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select  class="form-control"  id= "office-dropdown" name="selectedOffice">
+                                            <option th:value="-1">Select Office</option>
+                                            <option th:each = "ofc : ${officeList}" th:value="${ofc.secOfficeId}" th:text="${ofc.name}"></option>
+                                        </select>
+                                        <span class="officeError"></span>
+                                    </div>
+                                </div>
+
+                                <!--DEPT-->
+                                <div class="item form-group" id="dept-select-id">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "department-dropdown">Department
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select  class="form-control"  id= "department-dropdown" name="selectedDept">
+                                            <option th:value="-1">Select Department</option>
+                                            <option th:each = "dpt : ${departmentList}" th:value="${dpt.lookupId}" th:text="${dpt.name}"></option>
+                                        </select>
+                                        <span class="divisionError"></span>
+                                    </div>
+                                </div>
+
+                                <!--DESIG-->
+                                <div class="item form-group" id="desig-select-id">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "designation-dropdown">Designation
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select  class="form-control"  id= "designation-dropdown" name="selectedDept">
+                                            <option th:value="-1">Select Designation</option>
+                                            <option th:each = "desig : ${designationList}" th:value="${desig.designationId}" th:text="${desig.designationName}"></option>
+                                        </select>
+                                        <span class="divisionError"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+                            <!--<button type="button" id="filterBtn">Apply Filter</button>-->
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3" th:switch="${permissionCheck.addPermit}">
+
+                                    <button type="button" class="btn" id="filterBtn">Apply Filter</button>
+
+                                    <button th:case="1" type="submit" class="btn btn-success" name="update" id="updateButton"
+                                            value="update">Update
+                                    </button>
+
+                                    <input type="button" class="btn btn-primary" id="refreshButton" value="Refresh">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="" id="tableOffice">
+                                    <table id="tableData" class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>Employee Name</th>
+                                            <th>Employee ID</th>
+                                            <th>Office</th>
+                                            <th>Office ID</th>
+                                            <th>Department</th>
+                                            <th>Department ID</th>
+                                            <th>Designation</th>
+                                            <th>Designation ID</th>
+                                            <th>Employment Type</th>
+                                            <th>Employment Type ID</th>
+                                            <th>Employee Type</th>
+                                            <th>Employee Type ID</th>
+                                            <th style="width:88px;">Actions</th>
+                                        </tr>
+                                        </thead>
+
+                                        <!--<tbody>-->
+                                        <!--<td>-->
+                                            <!--<div class="col-xs-6 previous">-->
+                                                <!--<a class="btn btn-success" id="editButton"><i class="fa fa-pencil"></i></a>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-xs-6 next">-->
+                                                <!--<a class="btn btn-danger" id="deleteButton"><i class="fa fa-trash"></i></a>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                        <!--</tr>-->
+                                        </tbody>
+
+                                        <!-- Footer Table -->
+                                        <tfoot>
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>Employee Name</th>
+                                            <th>Employee ID</th>
+                                            <th>Office</th>
+                                            <th>Department</th>
+                                            <th>Designation</th>
+                                            <th>Employment Type</th>
+                                            <th>Employee Type</th>
+                                        </tr>
+                                        </tfoot>
+
+                                    </table>
+
+
+                                </div>
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div layout:fragment="script">
+    <script src="/js/hrm_admin/employee.js"></script>
+</div>
+<div layout:fragment="css">
+    <link href="../css/hrm_admin/employee.css" rel="stylesheet">
+</div>

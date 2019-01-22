@@ -1,0 +1,7 @@
+.err_msg {
+    color: red;
+}
+.mandatory {
+    color: red;
+    font-weight: bold;
+}
